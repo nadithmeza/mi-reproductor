@@ -10,8 +10,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Descomprimir el proyecto
-        run: unzip -o proyecto-reproductor.zip
+      - name: Descomprimir la versión más reciente
+        run: |
+          ZIP=$(ls Reproductor_version_*.zip | sort -V | tail -n 1)
+          echo "Usando $ZIP"
+          unzip -o "$ZIP"
 
       - uses: actions/setup-java@v4
         with:
